@@ -2,16 +2,11 @@ import './App.css';
 import React, { Component } from 'react';
 import TextField from './Textfield';
 import { makeStyles } from '@material-ui/core/styles';
-//import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import cup from './cup.png';
 
-
-//const API = 'https://us-central1-callert-b38f5.cloudfunctions.net/webApi/api/v1/users/';
-const COLOR = '#ff8fd9';
-
 const useStyles = makeStyles((theme) => ({
-    profileContainerStyle: {
+    formStyle: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -22,10 +17,9 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
     },
     title: {
-        fontSize: "60px",
+        fontSize: 60,
         color: "white",
-        margin: "20px",
-        paddingRight: "100px",
+        paddingRight: 100,
     },
     container: {
         width: "60%",
@@ -34,9 +28,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         marginTop: 40,
         marginBottom: 40,
+      
     },
     image: {
         width: "50%",
+        maxHeight: 400,
     }
 }));
 
@@ -45,7 +41,7 @@ export default function Home() {
 
 
     return (
-        <form className={classes.profileContainerStyle}>
+        <form className={classes.formStyle}>
             <div className={classes.container}>
                 <h1 className={classes.title}>Convertissez votre vidéo</h1>
                 <img className={classes.image} src={cup} alt="Cup" />
