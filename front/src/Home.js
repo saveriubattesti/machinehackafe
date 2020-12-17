@@ -68,7 +68,34 @@ const useStyles = makeStyles((theme) => ({
         width: 120,
         height: 120,
         background: "white",
-    }
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    instagramVertical: {
+        width: 120,
+        height: 150,
+        background: "white",
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    instagramHorizontal: {
+        width: 120,
+        height: 73,
+        background: "white",
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    instagramStory: {
+        width: 120,
+        height: 120,
+        background: "white",
+        marginLeft: 10,
+        marginRight: 10,
+    },
+    formatContainer: {
+        display: "flex",
+        
+    },
 }));
 
 export default function Home() {
@@ -132,11 +159,11 @@ export default function Home() {
                         </Select>
                     </FormControl>
                     <div className={classes.formatsContainer}>
-                        <div className={classes.instagramFormats}>
+                        <div className={classes.formatContainer}>
                             <div className={classes.instagramCarre}>600x600</div>
                             <div className={classes.instagramVertical}>600x750</div>
-                            <div className={classes.instagramHorizontal}>600x600</div>
-                            <div className={classes.instagramStory}>600x600</div>
+                            <div className={classes.instagramHorizontal}>600x315</div>
+                            <div className={classes.instagramStory}>1080x1920</div>
                         </div>
                     </div>
                     
