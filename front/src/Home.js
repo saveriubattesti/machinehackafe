@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from "@material-ui/core/TextField";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Preview from './Preview';
 
 function goToStep2() {
     document.getElementById("page1").hidden = true;
@@ -37,9 +38,9 @@ function uploadFile() {
 }
 
 function returnFlaskPost() {
-    console.log(document.getElementById("tf").value);
-    let tf = document.getElementById("tf").value;
-    //return fetch('http://0.0.0.0:5000/api/v1', { headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, method: 'POST', body: { 'link': tf } });
+    console.log(document.getElementById("urlTf").value);
+    let tf = document.getElementById("urlTf").value;
+    return fetch('http://0.0.0.0:5000/test', { headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, method: 'GET', body: { } });
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     preview: {
         marginTop: 40,
         marginBottom: 40,
-        background: "red",
         width: "50%",
         height: 300,
     },
@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
     },
     instagramVertical: {
         width: 120,
@@ -104,6 +105,7 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
     },
     instagramHorizontal: {
         width: 120,
@@ -111,6 +113,7 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
     },
     instagramStory: {
         width: 216,
@@ -118,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
     },
     youtube: {
         width: 356,
@@ -125,6 +129,8 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
+        
     },
     facebookCarre: {
         width: 64,
@@ -132,6 +138,7 @@ const useStyles = makeStyles((theme) => ({
         background: "white",
         marginLeft: 10,
         marginRight: 10,
+        textAlign: "center",
     },
     formatContainer: {
         display: "flex",
@@ -152,7 +159,7 @@ export default function Home() {
     const classes = useStyles();
 
     const [platform, setPlatform] = React.useState('instagram');
-    let [tf, setTf] = React.useState('');
+    const [tf, setTf] = React.useState('');
 
     const handleChange = (event) => {
         setPlatform(event.target.value);
@@ -203,7 +210,7 @@ export default function Home() {
             <div id="page1">
                 <form className={classes.formStyle}>
                     <div className={classes.container}>
-                        <h1 className={classes.title}>Convertissez votre vidéo</h1>
+                        <h1 className={classes.title}>Défi Jellysmack</h1>
                         <img className={classes.image} src={cup} alt="Cup" />
                     </div>
                     <TextField
@@ -249,7 +256,18 @@ export default function Home() {
             <div id="page2" hidden>
                 <form className={classes.formStyle}>
                     <div className={classes.preview}>
-                        <h1>Preview</h1>
+                        <Preview url={tf}></Preview>
+                        <div id="valider">
+                        <Button
+                            id="validerBtn"
+                            variant="contained"
+                            className={classes.btnStyle}
+                            color="primary"
+                            hidden={true}
+                        >
+                            Valider
+                        </Button>
+                    </div>
                     </div>
                     <FormControl className={classes.formControl}>
                         <Select

@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     },
     img: {
         height: 60,
-
     }
 }));
 
@@ -40,7 +39,7 @@ export default function ButtonAppBar() {
                     <Button
                         className={classes.title}
                     >
-                        Convertir la vidéo
+                        EQUIPE hackafe
                     </Button>
                     <div className={classes.imgContainer}>
                         <img className={classes.img} src={jelly} alt="Jellysmack" />
