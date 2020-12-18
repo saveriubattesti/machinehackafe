@@ -14,9 +14,6 @@ function goToStep2() {
 }
 
 function selectFormat(format) {
-    console.log(format)
-    const formatContainer = document.getElementsByClassName("formatContainer");
-
     const formatsIds = [ "instaCarreFormat", "instaVFormat", "instaHFormat", "instaStoryFormat", "tiktokFormat", "youtubeFormat", "fbHFormat", "fbCarreFormat" ];
     
     formatsIds.forEach(id => {
@@ -24,12 +21,17 @@ function selectFormat(format) {
     })
     
     document.getElementById(format).style.border = "thick solid #3f51b5";
-
 }
 
 function uploadFile() {
-    let upload = document.getElementById("upload").value;
-    document.getElementById("tf").value = upload;
+    if (document.getElementById("upload").value != "") {
+        const upload = document.getElementById("upload").value;
+        console.log("ta maman");
+        console.log(upload);
+        if (upload != null) {
+            document.getElementById("tf").value = upload;
+        }
+    }
 }
 
 const useStyles = makeStyles((theme) => ({
