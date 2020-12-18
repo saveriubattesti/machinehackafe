@@ -108,6 +108,14 @@ def cropfromurl():
         #return myPreview #path of preview
     else:
         return "Bad URL"
+@app.route('/api/preview', methods=['GET'])
+def getPreview():
+    url = request.args.get('url')
+    my_downloader = mh.Downloader(url)
+    path = my_downloader.download()
+    if path != False:
+        data = mh.Data(path)
+        return send_file(data.preview)
 
 @app.route('/api/meta', methods=['GET'])
 def getMeta():

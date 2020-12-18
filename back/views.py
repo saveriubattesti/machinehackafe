@@ -61,6 +61,8 @@ def getURL():
         global file_path
         file_path = path
 
+        myPreview = mh.Data(file_path).preview
+        return myPreview #path of preview
     else:
         return "Bad URL"
 
