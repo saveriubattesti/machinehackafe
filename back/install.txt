@@ -1,0 +1,10 @@
+pip install moviepy
+pip install tinytag
+pip install TikTokApi
+pip install requests
+pip install wget
+pip install opencv-python
+pip install imutils
+pip install pytube
+
+python -m playwright install
