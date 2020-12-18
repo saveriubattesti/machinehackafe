@@ -22,9 +22,9 @@ function CustomizedInputs(props) {
 
   return (
     <TextField
-      variant="standard"
-      id="name"
-      label="Renseigner l'URL de la vidéo"
+      variant="filled"
+      id="url"
+      label="Renseignez l'URL de la vidéo"
       className={classes.root}
       InputProps={{
         className: classes.input
