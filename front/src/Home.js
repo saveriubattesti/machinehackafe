@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react';
-import TextField from './Textfield';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import cup from './cup.png';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import TextField from "@material-ui/core/TextField";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 function goToStep2() {
     document.getElementById("page1").hidden = true;
@@ -14,12 +15,12 @@ function goToStep2() {
 }
 
 function selectFormat(format) {
-    const formatsIds = [ "instaCarreFormat", "instaVFormat", "instaHFormat", "instaStoryFormat", "tiktokFormat", "youtubeFormat", "fbHFormat", "fbCarreFormat" ];
-    
+    const formatsIds = ["instaCarreFormat", "instaVFormat", "instaHFormat", "instaStoryFormat", "tiktokFormat", "youtubeFormat", "fbHFormat", "fbCarreFormat"];
+
     formatsIds.forEach(id => {
         document.getElementById(id).style.border = "";
     })
-    
+
     document.getElementById(format).style.border = "thick solid #3f51b5";
 }
 
@@ -130,13 +131,19 @@ const useStyles = makeStyles((theme) => ({
     },
     selected: {
         background: "red"
-    }
+    },
+    tfStyle: {
+        background: "white",
+        width: "60%",
+        marginTop: 10,
+    },
 }));
 
 export default function Home() {
     const classes = useStyles();
 
     const [platform, setPlatform] = React.useState('instagram');
+    let [tf, setTf] = React.useState('');
 
     const handleChange = (event) => {
         setPlatform(event.target.value);
@@ -174,6 +181,14 @@ export default function Home() {
         }
     };
 
+    const handleTfChange = (event) => {
+        if (event.target.value !== "") {
+            document.getElementById("convertBtnContainer").hidden = false;
+        } else {
+            document.getElementById("convertBtnContainer").hidden = true;
+        }
+    }
+
     return (
         <div>
             <div id="page1">
@@ -182,13 +197,24 @@ export default function Home() {
                         <h1 className={classes.title}>Convertissez votre vidéo</h1>
                         <img className={classes.image} src={cup} alt="Cup" />
                     </div>
-                    <TextField id="tf"/>
+                    <TextField
+                        variant="filled"
+                        id="urlTf"
+                        label="Renseignez l'URL de la vidéo"
+                        className={classes.tfStyle}
+                        InputProps={{
+                            className: classes.input
+                        }}
+                        onChange={handleTfChange}
+                    />
+                   
                     <Button
                         variant="contained"
                         component="label"
                         color="primary"
                         className={classes.btnStyle}
                         onClick={(event) => { uploadFile() }}
+                        startIcon={<CloudUploadIcon />}
                     >
                         Uploadez votre vidéo
                         <input
@@ -198,14 +224,18 @@ export default function Home() {
                             hidden
                         />
                     </Button>
-                    <Button
-                        variant="contained"
-                        className={classes.btnStyle}
-                        color="primary"
-                        onClick={(event) => { goToStep2() }}
-                    >
-                        Convertir
-                    </Button>
+                    <div id="convertBtnContainer" hidden>
+                        <Button
+                            id="convertBtn"
+                            variant="contained"
+                            className={classes.btnStyle}
+                            color="primary"
+                            onClick={(event) => { goToStep2() }}
+                            hidden={true}
+                        >
+                            Convertir
+                        </Button>
+                    </div>
                 </form>
             </div>
             <div id="page2" hidden>

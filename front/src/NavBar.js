@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     img: {
         height: 60,
+
     }
 }));
 
