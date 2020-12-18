@@ -11,25 +11,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 function goToStep2() {
     document.getElementById("page1").hidden = true;
     document.getElementById("page2").hidden = false;
+    returnFlaskPost();
 }
 
 function selectFormat(format) {
     console.log(format)
     const formatContainer = document.getElementsByClassName("formatContainer");
 
-    const formatsIds = [ "instaCarreFormat", "instaVFormat", "instaHFormat", "instaStoryFormat", "tiktokFormat", "youtubeFormat", "fbHFormat", "fbCarreFormat" ];
-    
+    const formatsIds = ["instaCarreFormat", "instaVFormat", "instaHFormat", "instaStoryFormat", "tiktokFormat", "youtubeFormat", "fbHFormat", "fbCarreFormat"];
+
     formatsIds.forEach(id => {
         document.getElementById(id).style.border = "";
     })
-    
-    document.getElementById(format).style.border = "thick solid #3f51b5";
 
+    document.getElementById(format).style.border = "thick solid #3f51b5";
 }
 
 function uploadFile() {
     let upload = document.getElementById("upload").value;
     document.getElementById("tf").value = upload;
+}
+
+function returnFlaskPost() {
+    console.log(document.getElementById("tf").value);
+    let tf = document.getElementById("tf").value;
+    //return fetch('http://0.0.0.0:5000/api/v1', { headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, method: 'POST', body: { 'link': tf } });
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -131,6 +137,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 export default function Home() {
     const classes = useStyles();
 
@@ -180,7 +188,7 @@ export default function Home() {
                         <h1 className={classes.title}>Convertissez votre vidéo</h1>
                         <img className={classes.image} src={cup} alt="Cup" />
                     </div>
-                    <TextField id="tf"/>
+                    <TextField id="tf" />
                     <Button
                         variant="contained"
                         component="label"

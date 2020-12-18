@@ -26,7 +26,7 @@ def my_api():
 @app.route('/crop/', methods = ['POST']) 
 def crop_video():
     app.logger.info(PROJECT_HOME)
-    if request.method == 'POST' and request.files['image']:
+    if request.method == 'POST':
         app.logger.info(app.config['UPLOAD_FOLDER'])
         img = request.files['image']
         img_name = secure_filename(img.filename)
@@ -37,6 +37,16 @@ def crop_video():
         return send_file(saved_path)
     else:
         return "Where is the image?" 
+
+@app.route('/test/') 
+def image():  
+    return send_file("cup.png")
+
+@app.route('/api/v1', methods=['POST'])
+def postTest():
+    if not request.json:
+        return "not a json post"
+    return "json post succeeded"
 
 
 if __name__ == "__main__":
