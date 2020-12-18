@@ -1,12 +1,22 @@
-#from exif_from_file import *
-from resize import *
+import machinehackafe as mh
 from enum_format import *
-from youtube_download import *
-from facebook_download import *
-from insta import *
+import os
+import time
+import threading
+#EXEMPLE
+
+#youtube_url = "https://www.youtube.com/watch?v=frUwcVqN0Vc"
+
+url = input("URL : ")
+my_downloader = mh.Downloader(url)
+path = my_downloader.download()
+#path = os.path.abspath(path).replace("\\","/")
+
+#print(threading.enumerate()) 
+if path != False: #False = Error
+	#my_sizing = mh.Sizing(path, Dimension.FACEBOOK_CARRE.value)
+	#my_sizing.resize(output_name="RESIZED FILE 2")
 
 
-
-#do something
-pass
-
+	data = mh.Data(path)
+	print(data.genre)

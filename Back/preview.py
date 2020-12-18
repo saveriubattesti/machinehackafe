@@ -1,21 +1,19 @@
 import cv2
 
-def get_preview(image_link:str):
+def get_preview(video_link:str, name:str):
 	try:
-		cap = cv2.VideoCapture(image_link)
+		cap = cv2.VideoCapture(video_link)
 		succes, frame = cap.read()
 	except:
 		succes = False
 		raise
 
 	if succes:
-		cv2.imwrite('Image/preview.png', frame)
+		cv2.imwrite('Image/' + name + '.png', frame)
 	else:
 		print("Error")
 		return False
 
 	cv2.destroyAllWindows()
 
-
-link = input("image link : ")
-get_preview(link)
+	return 'Image/' + name + '.png'

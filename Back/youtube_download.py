@@ -8,9 +8,10 @@ def youtube_download(url:str):
 			return : False quand erreur
 	"""
 	try:
-		pytube.YouTube(url).streams.get_highest_resolution().download('Video')
+		yt = pytube.YouTube(url)
+		yt.streams.get_highest_resolution().download('Video')
 	except:
 		print("Youtube_Download error")
 		return False
 
-	return True
+	return "Video/" + yt.title + ".mp4"
